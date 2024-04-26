@@ -1,12 +1,11 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-export default function AboutScreen() {
+export default function AsdScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Hakkımda</Text>
-      <Text>Bu uygulama, React Native ile geliştirilmiştir.</Text>
-      <Text>Hakkımda daha fazla bilgi için ...</Text>
+      <Text style={styles.title}>kitapSecSayfasi</Text>
+      <Text>Bu, Değişiklik bileşenidir.</Text>
     </View>
   );
 }

@@ -8,11 +8,9 @@ export default function LoginScreen({ navigation }) {
   const [password, setPassword] = useState('');
 
   const handleLogin = () => {
-    // Burada giriş işlemi gerçekleştirilecek
     console.log('Kullanıcı adı:', username);
     console.log('Şifre:', password);
 
-    // Giriş başarılı ise menü ekranına yönlendir
     navigation.navigate('Menu');
   };
 

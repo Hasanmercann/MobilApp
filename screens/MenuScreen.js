@@ -1,43 +1,64 @@
-  import React from 'react';
-  import { View, Text, Button, StyleSheet } from 'react-native';
+import React from 'react';
+import { View, Text, Button, StyleSheet } from 'react-native';
 
-  export default function MenuScreen({ navigation }) {
-    const handleButton1Press = () => {
-      // Buton 1'e basıldığında yapılacak işlemler burada
-      navigation.navigate('Asd'); // 'Asd' ekranına yönlendirme
-    };
+export default function MenuScreen({ navigation }) {
+  const masaSecSayfasi = () => {
+    navigation.navigate('MasaSec');
+  };
 
-    const handleAboutPress = () => {
-      // "Hakkımda" butonuna basıldığında navigasyon işlemi
-      navigation.navigate('About'); // Burada 'About' ekranının adı kullanıldı, lütfen doğru adı kullanmaya dikkat edin
-    };
-    return (
-      <View style={styles.container}>
-        <Text style={styles.title}>Menü</Text>
+  const kitapSecSayfasi = () => {
+    navigation.navigate('KitapSec');
+  };
+
+  const adminSayfasi = () => {
+    navigation.navigate('Admin');
+  };
+
+  const hakkindaSayfasi = () => {
+    navigation.navigate('About');
+  };
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>Menü</Text>
+      <View style={styles.buttonContainer}>
         <Button
-          title="Buton 1"
-          onPress={handleButton1Press}
+          title="Masa Seç"
+          onPress={masaSecSayfasi}
         />
+        <View style={{ marginVertical: 20 }} />
+        <Button
+          title="Kitap Seç"
+          onPress={kitapSecSayfasi}
+        />
+        <View style={{ marginVertical: 20 }} />
+        <Button
+          title="Admin İşlemleri"
+          onPress={adminSayfasi}
+        />
+        <View style={{ marginVertical: 20 }} />
         <Button
           title="Hakkımda"
-          onPress={handleAboutPress}
-        />
-        <Button
-          title="Geri Dön"
-          onPress={() => navigation.goBack()}
+          onPress={hakkindaSayfasi}
         />
       </View>
-    );
-  }
+    </View>
+  );
+}
 
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    title: {
-      fontSize: 24,
-      marginBottom: 20,
-    },
-  });
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  title: {
+    fontSize: 24,
+    marginBottom: 20,
+  },
+  buttonContainer: {
+    marginTop: 20,
+    marginBottom: 20,
+    width: '80%',
+  },
+});
