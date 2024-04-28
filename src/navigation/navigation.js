@@ -3,10 +3,10 @@ import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
 import LoginScreen from '../../screens/LoginScreen';
 import MenuScreen from '../../screens/MenuScreen';
-import AboutScreen from '../../screens/AboutScreen';
-import MasaSecScreen from '../../screens/MasaSecScreen';
-import KitapSecScreen from '../../screens/KitapSecScreen';
-import AdminScreen from '../../screens/AdminScreen';
+import AboutScreen from '../../screens/hakkindaSayfasi';
+import MasaSecScreen from '../../screens/masaSecSayfasi';
+import KitapSecScreen from '../../screens/kitapSecSayfasi';
+import AdminScreen from '../../screens/adminSayfasi';
 
 const Stack = createStackNavigator();
 

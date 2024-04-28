@@ -62,3 +62,7 @@ const styles = StyleSheet.create({
     width: '80%',
   },
 });
+
+
+
+//PS C:\projeson\my-app> npx expo start
