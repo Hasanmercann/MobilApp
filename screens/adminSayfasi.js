@@ -9,7 +9,6 @@ export default function AsdScreen() {
     </View>
   );
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
