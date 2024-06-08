@@ -1,15 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 export default function AboutScreen() {
+  const [buttonsSelected, setButtonsSelected] = useState(
+    Array(21).fill(false)
+  );
+
+  const handleButtonPress = (index) => {
+    const updatedButtons = [...buttonsSelected];
+    updatedButtons[index] = !updatedButtons[index];
+    setButtonsSelected(updatedButtons);
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>masaSecSayfasi</Text>
       <Text>Bu uygulama, React Native ile geliştirilmiştir.</Text>
       <Text>masaSecSayfasi daha fazla bilgi için ...</Text>
       <View style={styles.buttonGrid}>
-        {Array.from({ length: 21 }).map((_, index) => (
-          <TouchableOpacity key={index} style={styles.button}>
+        {buttonsSelected.map((isSelected, index) => (
+          <TouchableOpacity
+            key={index}
+            style={[styles.button, isSelected && styles.selectedButton]}
+            onPress={() => handleButtonPress(index)}
+          >
             <Text style={styles.buttonText}>{`masa${index + 1}`}</Text>
           </TouchableOpacity>
         ))}
@@ -23,29 +37,29 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 10,
+    padding: 20,
   },
   title: {
     fontSize: 24,
+    fontWeight: 'bold',
     marginBottom: 20,
   },
   buttonGrid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
   },
   button: {
-    width: '30%', // Approx. 3 buttons per row with some spacing
-    marginBottom: 10,
-    alignItems: 'center',
-    justifyContent: 'center',
     backgroundColor: '#007BFF',
     padding: 10,
+    margin: 5,
     borderRadius: 5,
   },
   buttonText: {
     color: 'white',
     fontSize: 16,
   },
+  selectedButton: {
+    backgroundColor: 'red', 
+  },
 });
-
