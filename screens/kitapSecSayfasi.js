@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, Button, TextInput, TouchableOpacity } from 'react-native';
 import { initializeApp } from 'firebase/app';
 import { getFirestore, doc, getDoc, updateDoc } from 'firebase/firestore';
 
-// Firebase yapılandırması
 const firebaseConfig = {
   apiKey: "AIzaSyDfyvB2xoVpsE97_e9KuAT7Vlo4wLi75-Q",
   authDomain: "mobilapp-500bc.firebaseapp.com",
@@ -14,16 +13,17 @@ const firebaseConfig = {
   measurementId: "G-ZHVDNNRWF6"
 };
 
-// Firebase uygulamasını başlatın
 const app = initializeApp(firebaseConfig);
-
-// Firestore örneğini alın
 const db = getFirestore(app);
 
 export default function AsdScreen() {
   const [kitaplar, setKitaplar] = useState([]);
   const [aramaMetni, setAramaMetni] = useState('');
   const [filtrelenmisKitaplar, setFiltrelenmisKitaplar] = useState([]);
+
+  useEffect(() => {
+    kitaplariGetir();
+  }, []);
 
   const kitaplariGetir = async () => {
     try {
@@ -37,8 +37,9 @@ export default function AsdScreen() {
           adi: kitapAdi,
           durum: kitaplarVerisi[kitapAdi],
         }));
-        setKitaplar(kitaplarDizisi);
-        setFiltrelenmisKitaplar(kitaplarDizisi);
+
+        setKitaplar([...kitaplarDizisi]);
+        setFiltrelenmisKitaplar([...kitaplarDizisi]);
       } else {
         console.log("Doküman bulunamadı.");
       }
@@ -59,33 +60,36 @@ export default function AsdScreen() {
     try {
       const kitaplarDocRef = doc(db, 'kitaplar', 'kitaplar');
       await updateDoc(kitaplarDocRef, {
-        [kitapId]: false, 
+        [kitapId]: false,
       });
 
-      const guncelKitaplar = kitaplar.map((k) =>
+      // Durumları güncelle
+      setKitaplar(prevKitaplar => prevKitaplar.map((k) =>
         k.id === kitapId ? { ...k, durum: false } : k
-      );
-      setKitaplar(guncelKitaplar);
-      setFiltrelenmisKitaplar(guncelKitaplar);
+      ));
+      setFiltrelenmisKitaplar(prevKitaplar => prevKitaplar.map((k) =>
+        k.id === kitapId ? { ...k, durum: false } : k
+      ));
 
       console.log('Kitap kiralandı!');
     } catch (error) {
       console.error('Kiralama hatası:', error);
     }
   };
-
   const kitabiBirak = async (kitapId) => {
     try {
       const kitaplarDocRef = doc(db, 'kitaplar', 'kitaplar');
       await updateDoc(kitaplarDocRef, {
-        [kitapId]: true, // Kitabın durumunu "mevcut" olarak ayarla
+        [kitapId]: true,
       });
 
-      const guncelKitaplar = kitaplar.map((k) =>
+      // Durumları güncelle
+      setKitaplar(prevKitaplar => prevKitaplar.map((k) =>
         k.id === kitapId ? { ...k, durum: true } : k
-      );
-      setKitaplar(guncelKitaplar);
-      setFiltrelenmisKitaplar(guncelKitaplar);
+      ));
+      setFiltrelenmisKitaplar(prevKitaplar => prevKitaplar.map((k) =>
+        k.id === kitapId ? { ...k, durum: true } : k
+      ));
 
       console.log('Kitap bırakıldı!');
     } catch (error) {

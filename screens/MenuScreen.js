@@ -36,11 +36,6 @@ export default function MenuScreen({ navigation }) {
           title="Admin İşlemleri"
           onPress={adminSayfasi}
         />
-        <View style={{ marginVertical: 20 }} />
-        <Button
-          title="Hakkımda"
-          onPress={hakkindaSayfasi}
-        />
       </View>
     </View>
   );
@@ -61,7 +56,3 @@ const styles = StyleSheet.create({
     width: '80%',
   },
 });
-
-
-
-//PS C:\projeson\my-app> npx expo start
