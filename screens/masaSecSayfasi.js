@@ -14,9 +14,7 @@ export default function AboutScreen() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>masaSecSayfasi</Text>
-      <Text>Bu uygulama, React Native ile geliştirilmiştir.</Text>
-      <Text>masaSecSayfasi daha fazla bilgi için ...</Text>
+      <Text style={styles.title}>Lütfen Masanızı Seçiniz</Text>
       <View style={styles.buttonGrid}>
         {buttonsSelected.map((isSelected, index) => (
           <TouchableOpacity

@@ -5,8 +5,7 @@ export default function AboutScreen() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>hakkindaSayfasi</Text>
-      <Text>Bu uygulama, React Native ile geliştirilmiştir.</Text>
-      <Text>hakkindaSayfasi daha fazla bilgi için ...</Text>
+      <Text>Bu Uygulama Fonksyonel Programlama Dersi İçin React Native İle Geliştirilmiştir.</Text>
     </View>
   );
 }
